@@ -1,16 +1,21 @@
 const { Router, json } = require("express");
-const { Student } = require("../db");
+const { Student } = require("../db/schema");
 const router = Router();
 
 router.post("/register", async (req, res) => {
-  console.log({ ...req.body });
-  const newStudent = new Student({ ...req.body });
-  newStudent.save();
-  if (newStudent) {
+  try {
+    const newStudent = await Student.create({ ...req.body });
+
     res.status(200).json({
       success: true,
       message: "Student created successfully",
       err: {},
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Student Not created ",
+      err: error.message,
     });
   }
 });

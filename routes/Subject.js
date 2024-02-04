@@ -1,6 +1,5 @@
 const { Router, json } = require("express");
-const { Subject } = require("../db");
-
+const { Subject } = require("../db/schema");
 const router = Router();
 
 router.post("/addSubject", (req, res) => {
@@ -14,10 +13,8 @@ router.post("/addSubject", (req, res) => {
   }
 });
 
-router.get("/subjects/:studentId", async (req, res) => {
-  const stdId = req.params.studentId;
-
-  const subjects = await Subject.find({ studentId: req.params.studentId });
+router.get("/subjects", async (req, res) => {
+  const subjects = await Subject.find({});
 
   if (!subjects) {
     res.status(404).json({

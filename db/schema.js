@@ -46,4 +46,5 @@ module.exports = {
   Student,
   Subject,
   Grade,
+  ReportCard,
 };

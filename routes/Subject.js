@@ -29,4 +29,20 @@ router.get("/subjects", async (req, res) => {
   });
 });
 
+router.get("/SubById/:id", async (req, res) => {
+  const subjects = await Subject.findById(req.params.id);
+
+  if (!subjects) {
+    res.status(404).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+
+  res.status(200).json({
+    subjects: true,
+    subjects,
+  });
+});
+
 module.exports = router;

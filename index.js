@@ -17,6 +17,6 @@ app.use("/api/subject", subjectRoute);
 app.use("/api/grade", gradeRoute);
 app.use("/api/report", reportRoute);
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
   console.log(`server listening on port ${PORT}`);
 });

@@ -52,4 +52,17 @@ router.post("/std_report", async (req, res) => {
   }
 });
 
+router.get("/get_report", async (req, res) => {
+  try {
+    const report = await ReportCard.find();
+    res.status(200).json({
+      report,
+    });
+  } catch (error) {
+    res.json({
+      msg: "not fetched report",
+    });
+  }
+});
+
 module.exports = router;
